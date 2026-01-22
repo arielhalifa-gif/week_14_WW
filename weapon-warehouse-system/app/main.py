@@ -18,4 +18,8 @@ def upload_file(file: UploadFile = File(...)):
 
 
 if __name__ == "__main__":
+    db_message = dc.create_db()
+    print (db_message)
+    table_message = dc.create_table()
+    print(table_message)
     uvicorn.run("main:app", host="0.0.0.0", port="8000")
