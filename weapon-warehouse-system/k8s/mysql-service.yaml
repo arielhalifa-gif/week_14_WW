@@ -3,11 +3,12 @@ kind: Service
 metadata:
   name: mysql-svc
   labels:
-    app: nginx
+    app: mysql
 spec:
+  type: ClusterIP
+  selector:
+    app: mysql
   ports:
-  - port: 80
+  - port: 3306
     name: web
   clusterIP: None
-  selector:
-    app: nginx
