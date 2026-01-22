@@ -1,0 +1,12 @@
+docker build -t arielhalifa/weapon-api:v1 .
+docker push arielhalifa/weapon-api:v1
+
+
+oc apply -f mysql-statefulset.yaml
+oc apply -f mysql-service.yaml
+oc apply -f api-deployment.yaml
+oc apply -f api-service.yaml
+
+oc get pods
+oc get svc
+oc get deployment
