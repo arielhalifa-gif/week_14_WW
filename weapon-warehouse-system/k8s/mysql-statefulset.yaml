@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-statefulSet
+spec:
+  selector:
+    matchLabels:
+      app: mysql   # has to match .spec.template.metadata.labels
+  serviceName: mysql-svc
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: mysql   # has to match .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: mysql-container
+        image: mysql:9.6
+        ports:
+        - containerPort: 3306
+          name: web
+        env:
+           - name: MYSQL_ROOT_PASSWORD
+             value: "password"
+           - name: MYSQL_DATABASE
+             value: "weapon_warehouse"
+        volumeMounts:
+        - name: www
+          mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "gp3"
+      resources:
+        requests:
+          storage: 1Gi
