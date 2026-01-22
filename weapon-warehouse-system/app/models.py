@@ -5,7 +5,7 @@ class DataManipulation:
 
     @staticmethod
     def add_new_column(df):
-        df['risk_level'] = pd.cat(df['range_km'], [0, 20, 100, 300, 10000], labels=['low', 'medium', 'high', 'extreme'])
+        df['risk_level'] = pd.cut(df['range_km'], [0, 20, 100, 300, 10000], labels=['low', 'medium', 'high', 'extreme'])
         return df
     
     @staticmethod

@@ -64,3 +64,4 @@ class DbConnector:
                                    row["risk_level"],),)
         conn.commit()
         cursor.close()
+        return "succesfully inserted"
