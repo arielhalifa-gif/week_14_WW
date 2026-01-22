@@ -10,3 +10,6 @@ oc apply -f api-service.yaml
 oc get pods
 oc get svc
 oc get deployment
+
+oc expose svc/api-svc
+oc get route
